@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.36631.11
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "fitnessClubDW", "fitnessClubDW\fitnessClubDW.dwproj", "{999BE244-08EA-4F74-B756-AFC1DAD53610}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{999BE244-08EA-4F74-B756-AFC1DAD53610}.Development|Default.ActiveCfg = Development
+		{999BE244-08EA-4F74-B756-AFC1DAD53610}.Development|Default.Build.0 = Development
+		{999BE244-08EA-4F74-B756-AFC1DAD53610}.Development|Default.Deploy.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9B433180-28A1-44B6-A3D0-82896FFD9ADA}
+	EndGlobalSection
+EndGlobal

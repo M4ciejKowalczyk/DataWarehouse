@@ -1,0 +1,181 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="4beb8b1d-56fc-409c-aedb-3d1402dd80dc" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Fact Przeprowadzenie Zajec</ID>
+  <Name>Fact Przeprowadzenie Zajec</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="1260bd47-66e8-457b-85ed-1382545e6a3d">
+    <DataSourceViewID>Dw Schema</DataSourceViewID>
+  </Source>
+  <ErrorConfiguration dwd:design-time-name="1837c88b-bab6-4163-8150-3e1f473e66a5">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <Attributes>
+    <Attribute dwd:design-time-name="dd7a4f61-9289-495e-acf3-68ba6c0581b4">
+      <ID>ID Przeprowadzenie Zajec</ID>
+      <Name>ID Przeprowadzenie Zajec</Name>
+      <Usage>Key</Usage>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="828aeac1-0432-478d-a23a-2a576b19ec40">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="c630f8f0-8771-4745-914e-06913e023615">
+            <TableID>dbo_Fact_PrzeprowadzenieZajec</TableID>
+            <ColumnID>ID_PrzeprowadzenieZajec</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="0945b17f-1040-4689-8ddb-0deefbbaf6ce">
+          <AttributeID>ID Sala</AttributeID>
+          <Name>ID Sala</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="be065d6f-7ff5-47bb-81a4-f81d12107487">
+          <AttributeID>ID Czas</AttributeID>
+          <Name>ID Czas</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="f4f3ca2c-bdd8-4758-b9ef-9e14f1c6d1fd">
+          <AttributeID>ID Typ Zajec</AttributeID>
+          <Name>ID Typ Zajec</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="c49b2663-8873-4f4e-9e82-13d8e24fe95e">
+          <AttributeID>ID Instruktor</AttributeID>
+          <Name>ID Instruktor</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="531c926f-556b-40ef-962b-4a5ffc9f788e">
+          <AttributeID>ID Data</AttributeID>
+          <Name>ID Data</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="852bc3f6-71f1-4e78-8fa2-6fc290bb3522">
+      <ID>ID Sala</ID>
+      <Name>ID Sala</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="88c047e4-7b5d-4ac9-b492-1b438907c51e">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="69eb6fe4-8a5d-4ce2-a067-5b04e56807dd">
+            <TableID>dbo_Fact_PrzeprowadzenieZajec</TableID>
+            <ColumnID>ID_Sala</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="d61c0ef6-d310-482e-8a8d-bbd59d034ad8">
+      <ID>ID Czas</ID>
+      <Name>ID Czas</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="a5b15f43-5a17-4346-b5fd-9184fd6f6667">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="0450d1f8-e88b-4d4f-88ea-fe38300af6ba">
+            <TableID>dbo_Fact_PrzeprowadzenieZajec</TableID>
+            <ColumnID>ID_Czas</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="5074bc0a-edf8-4768-be8a-6f094117d282">
+      <ID>ID Typ Zajec</ID>
+      <Name>ID Typ Zajec</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="c9b487ec-9ff8-45f2-beef-56013d561395">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="285a6aa7-ec6a-4412-b4f7-fa3bb4711fd9">
+            <TableID>dbo_Fact_PrzeprowadzenieZajec</TableID>
+            <ColumnID>ID_TypZajec</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="6cc53279-b0f4-4a2d-ace8-c7eb92686061">
+      <ID>ID Instruktor</ID>
+      <Name>ID Instruktor</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="b008ff4a-8a30-49bd-891f-c83517dc154c">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="de8582ce-3ebd-4997-a97f-46aef240599f">
+            <TableID>dbo_Fact_PrzeprowadzenieZajec</TableID>
+            <ColumnID>ID_Instruktor</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="59c979d5-961f-4a35-9ec1-5c723d35da57">
+      <ID>ID Data</ID>
+      <Name>ID Data</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="18a517bb-e4f5-4ac1-9579-37bbe7f9e799">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="bbba7978-8c0b-47e6-8a52-1e70b842cb50">
+            <TableID>dbo_Fact_PrzeprowadzenieZajec</TableID>
+            <ColumnID>ID_Data</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+  </Attributes>
+  <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+</Dimension>
