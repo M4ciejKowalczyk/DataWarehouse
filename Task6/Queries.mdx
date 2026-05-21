@@ -1,0 +1,162 @@
+-- 1. Porównanie liczby zapisów w tym i poprzednim miesiącu
+WITH
+    MEMBER [Measures].[Uczestnictwa Poprzedni Miesiac] AS
+        ([Measures].[LiczbaUczestnictw], [Dim_Data].[Hierarchy].[Miesiac].CurrentMember.PrevMember)
+
+    MEMBER [Measures].[Roznica] AS
+        [Measures].[LiczbaUczestnictw] - [Measures].[Uczestnictwa Poprzedni Miesiac]
+SELECT
+    NON EMPTY { 
+        [Measures].[LiczbaUczestnictw],
+        [Measures].[Uczestnictwa Poprzedni Miesiac],
+        [Measures].[Roznica]
+    } ON COLUMNS,
+    NON EMPTY {
+        [Dim_Data].[Hierarchy].[Miesiac].MEMBERS
+    } ON ROWS
+FROM [Dw Schema];
+
+-- 2. Porównanie średniej oceny zajęć (Miesiąc do Miesiąca)
+WITH 
+    MEMBER [Measures].[Ocena Poprzedni Miesiac] AS
+        ( [Measures].[SredniaOcenaUczestnictwa], [Dim_Data].[Hierarchy].[Miesiac].CurrentMember.PrevMember )
+
+    MEMBER [Measures].[Zmiana Oceny] AS
+        [Measures].[SredniaOcenaUczestnictwa] - [Measures].[Ocena Poprzedni Miesiac]
+SELECT
+    NON EMPTY {
+        [Measures].[SredniaOcenaUczestnictwa],
+        [Measures].[Ocena Poprzedni Miesiac],
+        [Measures].[Zmiana Oceny]
+    } ON COLUMNS,
+    NON EMPTY {
+        [Dim_Data].[Hierarchy].[Miesiac] 
+    } ON ROWS
+FROM [Dw Schema];
+
+
+-- 3. Porównanie frekwencji w tym i poprzednim miesiącu
+WITH 
+    MEMBER [Measures].[Frekwencja Poprzedni Miesiac] AS
+        ( [Measures].[GlobalnaFrekwencja], [Dim_Data].[Hierarchy].[Miesiac]CurrentMember.PrevMember ), 
+        FORMAT_STRING = "Percent"
+
+SELECT
+    NON EMPTY { 
+        [Measures].[GlobalnaFrekwencja], 
+        [Measures].[Frekwencja Poprzedni Miesiac]
+    } ON COLUMNS,
+    NON EMPTY { [Dim_Data].[Hierarchy].[Miesiac].MEMBERS } ON ROWS
+FROM [Dw Schema];
+
+
+-- 4. Zidentyfikuj najlepszych instruktorów
+SELECT
+    NON EMPTY { 
+        [Measures].[SredniaOcenZajec],
+        [Measures].[SredniaLiczbaZapisanych],
+        [Measures].[SredniProcentZapelnienia]
+    } ON COLUMNS,
+    NON EMPTY { 
+        TOPCOUNT(
+            [Dim_Instruktor].[Imie I Nazwisko].[Imie I Nazwisko].MEMBERS,
+            [Dim_Instruktor].[Specjalizacja].[Specjalizacja].MEMBERS,
+            [Dim_Instruktor].[Kategoria Stazu].[Kategoria Stazu].MEMBERS
+            5,
+            [Measures].[SredniaOcenZajec]
+        )
+    } ON ROWS
+FROM [Dw Schema];
+
+-- 5. Zapisani wg miesiąca i typu zajęć
+WITH 
+ MEMBER [Measures].[Wzrost Zapisow] AS
+    [Measures].[SumaZapisanych] - ( [Measures].[SumaZapisanych], [Dim_Data].[Hierarchy].[Miesiac].CurrentMember.PrevMember )
+
+SELECT
+    NON EMPTY { 
+        [Measures].[SumaZapisanych], 
+        [Measures].[Wzrost Zapisow] 
+    } ON COLUMNS,
+    NON EMPTY { 
+        ORDER(
+            [Dim_Typ_Zajec].[Nazwa].[Nazwa].MEMBERS,
+            [Measures].[Wzrost Zapisow],
+            BDESC
+        )
+    } ON ROWS
+FROM [Dw Schema]
+
+-- 6. Typy zajęć o najniższej średniej ocen
+SELECT
+    NON EMPTY { [Measures].[SredniaOcenZajec] } ON COLUMNS,
+    NON EMPTY { 
+        BOTTOMCOUNT(
+            FILTER([Dim_Typ_Zajec].[Nazwa].[Nazwa].MEMBERS, [Measures].[SredniaOcenZajec] > 0),
+            3,
+            [Measures].[SredniaOcenZajec]
+        )
+    } ON ROWS
+FROM [Dw Schema];
+
+-- 7. Instruktorzy o najniższych średnich ocenach
+SELECT
+    NON EMPTY { [Measures].[SredniaOcenZajec] } ON COLUMNS,
+    NON EMPTY { 
+        BOTTOMCOUNT(
+            FILTER([Dim_Instruktor].[Imie I Nazwisko].[Imie I Nazwisko].MEMBERS, [Measures].[SredniaOcenZajec] > 0),
+            5,
+            [Measures].[SredniaOcenZajec]
+        )
+    } ON ROWS
+FROM [Dw Schema];
+
+-- 8. Frekwencja vs oceny instruktorów
+SELECT
+    NON EMPTY {
+        [Measures].[SredniaOcenZajec],
+        [Measures].[SredniaFrekwencja]
+    } ON COLUMNS,
+    NON EMPTY { 
+        ORDER(
+            [Dim_Instruktor].[Imie I Nazwisko].[Imie I Nazwisko].MEMBERS,
+            [Measures].[SredniaOcenZajec],
+            ASC
+        )
+    } ON ROWS
+FROM [Dw Schema];
+
+-- 9. Średnia ocena wg dnia tygodnia
+SELECT
+    NON EMPTY { [Measures].[SredniaOcenaUczestnictwa] } ON COLUMNS,
+    NON EMPTY { [Dim_Data].[Dzien Tygodnia].[Dzien Tygodnia].MEMBERS } ON ROWS
+FROM [Dw Schema];
+
+-- 10. Ocena zajęć vs liczba zapisanych uczestników
+SELECT
+    NON EMPTY {
+        [Measures].[SredniaOcenZajec],
+        [Measures].[LiczbaZapisanych]
+    } ON COLUMNS,
+    NON EMPTY { [Dim_Typ_Zajec].[Nazwa].[Nazwa].MEMBERS } ON ROWS
+FROM [Dw Schema];
+
+-- 11. Ranking wzrostu popularności zajęć (Tylko Weekendy)
+WITH 
+    MEMBER [Measures].[Wzrost Zapisow] AS
+        [Measures].[SumaZapisanych] - ( [Measures].[SumaZapisanych], [Dim_Data].[Hierarchy].[Miesiac].CurrentMember.PrevMember )
+
+SELECT
+    NON EMPTY { 
+        [Measures].[SumaZapisanych], 
+        [Measures].[Wzrost Zapisow] 
+    } ON COLUMNS,
+    NON EMPTY { 
+        ORDER(
+            [Dim_Typ_Zajec].[Nazwa].[Nazwa].MEMBERS,
+            [Measures].[Wzrost Zapisow],
+            BDESC
+        )
+    } ON ROWS
+FROM [Dw Schema]
+WHERE ( [Dim_Data].[Weekend].&[weekend] );

@@ -1,0 +1,171 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/30/2025 9:35:14 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-2IT4IO2P"
+  DTS:CreatorName="LAPTOP-2IT4IO2P\Sered"
+  DTS:DTSID="{4220C5FD-437B-4F8D-8B55-60B9E14BE3A3}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5467.0"
+  DTS:LocaleID="1045"
+  DTS:ObjectName="load_T2"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{B81DAB99-47B1-4DBE-98B8-DAF688D0EAF2}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-2IT4IO2P.auxiliary]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{CF090CE9-12AB-4151-B0A5-BE1B3AFC2428}"
+      DTS:ObjectName="LAPTOP-2IT4IO2P.auxiliary">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAPTOP-2IT4IO2P;Initial Catalog=auxiliary;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-load_T2-{CF090CE9-12AB-4151-B0A5-BE1B3AFC2428}LAPTOP-2IT4IO2P.auxiliary;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-2IT4IO2P.FitnessClub]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D804BDA1-3978-4CB2-9B8F-BE8F6ACEE6ED}"
+      DTS:ObjectName="LAPTOP-2IT4IO2P.FitnessClub">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAPTOP-2IT4IO2P;Initial Catalog=FitnessClub;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-load_T2-{D804BDA1-3978-4CB2-9B8F-BE8F6ACEE6ED}LAPTOP-2IT4IO2P.FitnessClub;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[load_auxiliary_T2.sql]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{F865A0A9-5961-4A85-82EE-E4E9A553FB98}"
+      DTS:ObjectName="load_auxiliary_T2.sql">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\Sered\Desktop\HD\ETL_processes\scripts\load\load_auxiliary_T2.sql" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[load_t2.sql]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{334812C4-1254-45EB-96B6-503B732ABDF1}"
+      DTS:ObjectName="load_t2.sql">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\Sered\Desktop\HD\ETL_processes\scripts\load\load_t2.sql" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\load_auxiliary_T2"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{BDD7E0D3-8724-4050-AEA4-581156F57E4E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="load_auxiliary_T2"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CF090CE9-12AB-4151-B0A5-BE1B3AFC2428}"
+          SQLTask:SqlStmtSourceType="FileConnection"
+          SQLTask:SqlStatementSource="load_auxiliary_T2.sql" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\load_T2"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{D2200D82-92C9-4357-9D0B-1AFE263C31EF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="load_T2"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D804BDA1-3978-4CB2-9B8F-BE8F6ACEE6ED}"
+          SQLTask:SqlStmtSourceType="FileConnection"
+          SQLTask:SqlStatementSource="load_t2.sql" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{11B5E07D-1F4A-433D-B650-72AC5C1A46B2}"
+      DTS:From="Package\load_T2"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\load_auxiliary_T2" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="116,41.6"
+          Id="Package\load_T2"
+          TopLeft="109.285716146839,68.0588244839111" />
+        <NodeLayout
+          Size="160.8,41.6"
+          Id="Package\load_auxiliary_T2"
+          TopLeft="406.428578350009,94.0588248485513" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="225.285716146839,88.8588244839111">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="181.14286220317,26.0000003646402"
+              Start="0,0"
+              End="173.64286220317,26.0000003646402">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="86.571431101585,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="86.571431101585,0"
+                    Point2="90.571431101585,0"
+                    Point3="90.571431101585,4" />
+                  <mssgle:LineSegment
+                    End="90.571431101585,22.0000003646402" />
+                  <mssgle:CubicBezierSegment
+                    Point1="90.571431101585,22.0000003646402"
+                    Point2="90.571431101585,26.0000003646402"
+                    Point3="94.571431101585,26.0000003646402" />
+                  <mssgle:LineSegment
+                    End="173.64286220317,26.0000003646402" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
